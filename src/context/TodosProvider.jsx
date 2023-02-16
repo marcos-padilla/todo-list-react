@@ -1,4 +1,4 @@
-import { useContext, createContext, useReducer } from 'react'
+import { useContext, createContext, useReducer, useEffect } from 'react'
 
 const TodosContext = createContext()
 
@@ -43,7 +43,13 @@ function getId(state) {
 }
 
 export function TodosProvider({ children }) {
-	const [todos, dispatch] = useReducer(reducer, [])
+	const tempTodos = JSON.parse(localStorage.getItem('products'))
+	const [todos, dispatch] = useReducer(reducer, tempTodos ? tempTodos : [])
+
+	useEffect(() => {
+		localStorage.setItem('products', JSON.stringify(todos))
+	}, [todos])
+
 	return (
 		<TodosContext.Provider value={{ todos, dispatch }}>
 			{children}

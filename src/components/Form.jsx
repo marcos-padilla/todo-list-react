@@ -1,8 +1,25 @@
-import { useId } from 'react'
+import { useId, useState } from 'react'
+import { useTodos } from '../context/TodosProvider'
 
 export default function Form() {
 	const titleId = useId()
 	const descriptionId = useId()
+
+	const [todo, setTodo] = useState('')
+	const [description, setDescription] = useState('')
+
+	const { dispatch } = useTodos()
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		dispatch({
+			type: 'add',
+			todo: todo,
+			description: description,
+		})
+		setTodo('')
+		setDescription('')
+	}
 
 	return (
 		<div style={{ flex: '1', display: 'flex', justifyContent: 'center' }}>
@@ -18,6 +35,7 @@ export default function Form() {
 					marginTop: 20,
 					borderRadius: 10,
 				}}
+				onSubmit={handleSubmit}
 			>
 				<div
 					style={{
@@ -38,6 +56,8 @@ export default function Form() {
 							fontSize: '1.5rem',
 							width: '100%',
 						}}
+						value={todo}
+						onChange={(e) => setTodo(e.target.value)}
 					/>
 				</div>
 				<div
@@ -60,6 +80,8 @@ export default function Form() {
 							width: '100%',
 							resize: 'none',
 						}}
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</div>
 				<button style={{ background: 'blue' }}>Añadir</button>

@@ -12,18 +12,48 @@ export default function App() {
 			description: 'Continue studying react and vue',
 			completed: true,
 		},
+		{
+			id: 3,
+			todo: 'Study programming',
+			description: 'Continue studying react and vue',
+			completed: true,
+		},
+		{
+			id: 4,
+			todo: 'Go shopping',
+			description: 'Buy some food for the dinner',
+			completed: false,
+		},
+		{
+			id: 5,
+			todo: 'Go shopping',
+			description: 'Buy some food for the dinner',
+			completed: false,
+		},
+		{
+			id: 6,
+			todo: 'Study programming',
+			description: 'Continue studying react and vue',
+			completed: true,
+		},
+		{
+			id: 7,
+			todo: 'Study programming',
+			description: 'Continue studying react and vue',
+			completed: true,
+		},
 	]
 
 	return (
-		<div>
-			<div className='list'>
+		<div style={{ display: 'flex' }}>
+			<div style={{ flex: '1' }}>
 				<ul
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
 						gap: 10,
 						listStyle: 'none',
-						width: '60%',
+						width: '100%',
 					}}
 				>
 					{temporalTodos.map((todo) => {
@@ -53,15 +83,27 @@ export default function App() {
 										gap: '10px',
 									}}
 								>
-									<button>Completar</button>
-									<button>Eliminar</button>
+									<button
+										style={{
+											backgroundColor: todo.completed ? 'green' : 'blue',
+										}}
+									>
+										{todo.completed ? 'Completado' : 'Completar'}
+									</button>
+									<button
+										style={{
+											backgroundColor: 'red',
+										}}
+									>
+										Eliminar
+									</button>
 								</div>
 							</li>
 						)
 					})}
 				</ul>
 			</div>
-			<div className='additem'>
+			<div style={{ flex: '1' }}>
 				<form></form>
 			</div>
 		</div>

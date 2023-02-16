@@ -1,4 +1,9 @@
+import { useId } from 'react'
+
 export default function Form() {
+	const titleId = useId()
+	const descriptionId = useId()
+
 	return (
 		<div style={{ flex: '1', display: 'flex', justifyContent: 'center' }}>
 			<form
@@ -22,11 +27,11 @@ export default function Form() {
 						gap: 10,
 					}}
 				>
-					<label htmlFor='todo' style={{ fontSize: '1.5rem' }}>
+					<label htmlFor={titleId} style={{ fontSize: '1.5rem' }}>
 						Title:{' '}
 					</label>
 					<input
-						id='todo'
+						id={titleId}
 						placeholder='Go shopping, do homework...'
 						style={{
 							height: '2rem',
@@ -43,11 +48,11 @@ export default function Form() {
 						gap: 10,
 					}}
 				>
-					<label htmlFor='description' style={{ fontSize: '1.5rem' }}>
+					<label htmlFor={descriptionId} style={{ fontSize: '1.5rem' }}>
 						Description: <span style={{ color: 'gray' }}>(optional)</span>
 					</label>
 					<textarea
-						id='description'
+						id={descriptionId}
 						placeholder='Buy some vegetables'
 						style={{
 							height: '2rem',

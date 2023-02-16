@@ -18,6 +18,19 @@ function reducer(state, action) {
 					completed: false,
 				},
 			]
+		case 'toggle':
+			return state.map((todo) => {
+				if (todo.id == action.id) {
+					return {
+						...todo,
+						completed: !todo.completed,
+					}
+				} else {
+					return todo
+				}
+			})
+		case 'delete':
+			return state.filter((todo) => todo.id != action.id)
 	}
 }
 

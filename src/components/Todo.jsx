@@ -1,4 +1,22 @@
+import { useTodos } from '../context/TodosProvider'
+
 export default function Todo({ todo }) {
+	const { dispatch } = useTodos()
+
+	const handleCompleted = () => {
+		dispatch({
+			type: 'toggle',
+			id: todo.id,
+		})
+	}
+
+	const handleDelete = () => {
+		dispatch({
+			type: 'delete',
+			id: todo.id,
+		})
+	}
+
 	return (
 		<li
 			style={{
@@ -24,6 +42,7 @@ export default function Todo({ todo }) {
 					style={{
 						backgroundColor: todo.completed ? 'green' : 'blue',
 					}}
+					onClick={handleCompleted}
 				>
 					{todo.completed ? 'Completado' : 'Completar'}
 				</button>
@@ -31,6 +50,7 @@ export default function Todo({ todo }) {
 					style={{
 						backgroundColor: 'red',
 					}}
+					onClick={handleDelete}
 				>
 					Eliminar
 				</button>

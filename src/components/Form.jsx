@@ -8,10 +8,16 @@ export default function Form() {
 	const [todo, setTodo] = useState('')
 	const [description, setDescription] = useState('')
 
+	const [error, setError] = useState('')
 	const { dispatch } = useTodos()
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
+		if (!todo) {
+			setError('The title is a required field')
+			return
+		}
+		setError('')
 		dispatch({
 			type: 'add',
 			todo: todo,
@@ -84,6 +90,7 @@ export default function Form() {
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</div>
+				{error && <span style={{ color: 'red' }}>{error}</span>}
 				<button style={{ background: 'blue' }}>Añadir</button>
 			</form>
 		</div>
